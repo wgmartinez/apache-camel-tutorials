@@ -46,6 +46,12 @@
 
 	<modules>
 		<module>apache-camel</module>
+		<module>inventory-service</module>
+		<module>invoice-service</module>
+		<module>payment-record-service</module>
+		<module>pricing-service</module>
+		<module>product-service</module>
+		<module>warehouse-service</module>
 	</modules>
 
 </project>
