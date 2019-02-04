@@ -1,42 +1,28 @@
 package co.wgmartinez.microservices.inventory.controller;
 
 import co.wgmartinez.camel.orders.model.CustomerDetails;
-import co.wgmartinez.camel.orders.model.DeliveryDetails;
-import co.wgmartinez.camel.orders.model.PaymentDetails;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.Map;
-
 @RestController
 public class CustomerDetailsController {
+
+    @Autowired
+    private CustomerDetailsFactory factory;
 
     /*
     Dummy REST API that returns a customers payment and delivery details
     */
-    @RequestMapping(value = "/customer/{id}", method = RequestMethod.GET, produces = "application/json")
-    public ResponseEntity<CustomerDetails> receiveOrderRequest(@PathVariable("id") String id) throws Exception {
-        CustomerDetails customerDetails = new CustomerDetails();
+    @RequestMapping(value = "/customer", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<CustomerDetails> receiveOrderRequest(@RequestParam("id") String id) throws Exception {
 
-        PaymentDetails paymentDetails = new PaymentDetails();
-        paymentDetails.setPaymentId("1234-5678-9689");
-        paymentDetails.setPaymentType("VISA");
-        paymentDetails.setExpiryDate("12/23");
-        customerDetails.setPaymentDetails(paymentDetails);
-
-        DeliveryDetails deliveryDetails = new DeliveryDetails();
-        deliveryDetails.setAddress("4 Brave Court");
-        deliveryDetails.setCity("Carnes Hill");
-        deliveryDetails.setPostcode("2171");
-        deliveryDetails.setState("NSW");
-
-        customerDetails.setDeliveryDetails(deliveryDetails);
-        customerDetails.setAdditionalProperty("Test", "Test");
+        System.out.println("Received request param = " + id);
+        CustomerDetails customerDetails = factory.getCustomerDetaulsForId(id);
+        System.out.println("CustomerDetails = " + customerDetails);
 
         ResponseEntity<CustomerDetails> responseEntity = new ResponseEntity<>(customerDetails, HttpStatus.OK);
-
         return responseEntity;
     }
 }
