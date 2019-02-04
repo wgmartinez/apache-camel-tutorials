@@ -2,13 +2,23 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+	<!--<parent>-->
+		<!--<groupId>co.wgmartinez.tutorials</groupId>-->
+		<!--<artifactId>parent-module</artifactId>-->
+		<!--<version>0.0.1-SNAPSHOT</version>-->
+	<!--</parent>-->
 
-	<groupId>co.wgmartinez.tutorials</groupId>
-	<artifactId>parent-module</artifactId>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.0.6.RELEASE</version>
+	</parent>
+
+	<groupId>co.wgmartinez.microservices</groupId>
+	<artifactId>customer-details-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>parent-module</name>
-	<packaging>pom</packaging>
-	<description>Java Tutorials</description>
+	<name>customer-details-service</name>
+	<description>Spring Boot Tutorial For Apache Camel</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -25,37 +35,52 @@
 		<json-schema-pojo-maven-plugin-version>0.5.1</json-schema-pojo-maven-plugin-version>
 	</properties>
 
+
 	<dependencies>
 		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-			<version>${apache-commons-version}</version>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+			<version>${spring.boot.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<version>${spring.boot.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<version>${spring.boot.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<version>${spring.boot.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>co.wgmartinez.model</groupId>
+			<artifactId>models</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+
 	</dependencies>
+
 
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<version>${spring.boot.version}</version>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>${compiler-plugin.version}</version>
 			</plugin>
 		</plugins>
 	</build>
-
-	<modules>
-		<module>apache-camel</module>
-		<module>customer-details-service</module>
-		<module>inventory-service</module>
-		<module>invoice-service</module>
-		<module>pricing-service</module>
-		<module>product-service</module>
-		<module>warehouse-service</module>
-	</modules>
-
 </project>
