@@ -1,0 +1,30 @@
+{
+  "customerId": "WGM123456",
+  "customerDetails": {
+    "deliveryDetails": {
+      "address": "4 Brave Court",
+      "city": "Carnes Hill",
+      "state": "NSW",
+      "postcode": "2171"
+    },
+    "paymentDetails": {
+      "paymentType": "VISA CARD",
+      "paymentId": "12234-5678-4444",
+      "expiryDate": "05/22"
+    }
+  },
+  "orderDetails": {
+    "items": [
+      {
+        "code": "SALX123",
+        "description": "Salomon Trainers Hill ",
+        "quantity": "1"
+      },
+      {
+        "code": "SALX244",
+        "description": "Salomon Trainers Ice",
+        "quantity": "2"
+      }
+    ]
+  }
+}

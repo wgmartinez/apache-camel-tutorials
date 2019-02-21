@@ -1,0 +1,12 @@
+server:
+  port: 21001
+  servlet:
+    context-path: /camel-brownbag
+spring:
+  jackson:
+    date-format: yyyy-MM-dd'T'HH:mm:ss.SSSXXX
+    serialization:
+      write-dates-as-timestamps: false
+  logging:
+    level:
+      org.springframework.web: DEBUG
