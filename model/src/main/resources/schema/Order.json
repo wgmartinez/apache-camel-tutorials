@@ -1,0 +1,35 @@
+{
+  "customerId": "string",
+  "customerDetails": {
+    "deliveryDetails": {
+      "address": "string",
+      "city": "string",
+      "state": "string",
+      "postcode": "string"
+    },
+    "paymentDetails": {
+      "paymentType": "string",
+      "paymentId": "string",
+      "expiryDate": "date"
+    }
+  },
+  "orderDetails": {
+    "items": [
+      {
+        "code": "string",
+        "description": "string",
+        "quantity": "integer",
+        "price": "decimal",
+        "specification": {
+          "description": "string",
+          "dimension": "string",
+          "materials": "string"
+        },
+        "inventory": {
+          "availableItems": "decimal",
+          "location": "string"
+        }
+      }
+    ]
+  }
+}

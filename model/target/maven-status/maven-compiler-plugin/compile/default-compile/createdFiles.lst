@@ -1,0 +1,8 @@
+co/wgmartinez/camel/orders/model/DeliveryDetails.class
+co/wgmartinez/camel/orders/model/Inventory.class
+co/wgmartinez/camel/orders/model/Item.class
+co/wgmartinez/camel/orders/model/Specification.class
+co/wgmartinez/camel/orders/model/PaymentDetails.class
+co/wgmartinez/camel/orders/model/CustomerDetails.class
+co/wgmartinez/camel/orders/model/OrderDetails.class
+co/wgmartinez/camel/orders/model/Order.class

@@ -17,8 +17,12 @@
 		<java.version>1.8</java.version>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
-		<spring.boot.version>2.1.2.RELEASE</spring.boot.version>
+		<spring.boot.version>2.0.6.RELEASE</spring.boot.version>
 		<apache-commons-version>3.7</apache-commons-version>
+		<camel-spring-boot-version>2.23.1</camel-spring-boot-version>
+		<jackson-binding-version>2.9.7</jackson-binding-version>
+		<apache-commons-lang-version>3.7</apache-commons-lang-version>
+		<json-schema-pojo-maven-plugin-version>0.5.1</json-schema-pojo-maven-plugin-version>
 	</properties>
 
 	<dependencies>
@@ -46,6 +50,12 @@
 
 	<modules>
 		<module>apache-camel</module>
+		<module>customer-details-service</module>
+		<module>inventory-service</module>
+		<module>invoice-service</module>
+		<module>pricing-service</module>
+		<module>product-service</module>
+		<module>warehouse-service</module>
 	</modules>
 
 </project>
