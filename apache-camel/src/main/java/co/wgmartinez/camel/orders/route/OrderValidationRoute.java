@@ -42,6 +42,7 @@ public class OrderValidationRoute extends RouteBuilder {
                     order = e.getIn().getBody(Order.class);
                     e.getOut().setBody(order);
                 })
+                .wireTap("direct:googlePubsubStart")
                 .to("direct:customerDetails")
                 .end();
 
@@ -141,6 +142,10 @@ public class OrderValidationRoute extends RouteBuilder {
                     }
                 })
                 .end();
+
+        from("direct:googlePubsubStart")
+                .to("google-pubsub:kubernetes-practice-230221:myTopic");
+
     }
 
 }

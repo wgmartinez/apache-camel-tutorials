@@ -1,6 +1,7 @@
 
 package co.wgmartinez.camel.orders.model.response;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
@@ -19,7 +20,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
     "customerDetails",
     "orderDetails"
 })
-public class OrderResponse {
+public class OrderResponse implements Serializable {
 
     @JsonProperty("customerId")
     private String customerId;

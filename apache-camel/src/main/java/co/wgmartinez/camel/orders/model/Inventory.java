@@ -1,6 +1,7 @@
 
 package co.wgmartinez.camel.orders.model;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
@@ -18,7 +19,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
     "availableItems",
     "location"
 })
-public class Inventory {
+public class Inventory implements Serializable {
 
     @JsonProperty("availableItems")
     private String availableItems;

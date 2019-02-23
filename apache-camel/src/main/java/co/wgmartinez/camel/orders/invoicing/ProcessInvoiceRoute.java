@@ -45,7 +45,6 @@ public class ProcessInvoiceRoute extends RouteBuilder {
                     order.setAdditionalProperty("Invoice Reference:", response.getInvoice().getInvoiceReference());
                     order.setAdditionalProperty("Invoice Service Status: ", response.getServiceStatus().getStatusCode());
                     order.setAdditionalProperty("Invoice Service Message: ", response.getServiceStatus().getMessage());
-
                 });
     }
 }

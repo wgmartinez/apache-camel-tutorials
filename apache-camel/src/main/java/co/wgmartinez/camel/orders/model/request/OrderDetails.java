@@ -1,6 +1,7 @@
 
 package co.wgmartinez.camel.orders.model.request;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,7 +20,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 @JsonPropertyOrder({
     "items"
 })
-public class OrderDetails {
+public class OrderDetails implements Serializable {
 
     @JsonProperty("items")
     private List<Item> items = new ArrayList<Item>();
