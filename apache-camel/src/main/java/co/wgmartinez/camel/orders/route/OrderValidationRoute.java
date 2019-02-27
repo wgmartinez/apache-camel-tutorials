@@ -22,7 +22,7 @@ public class OrderValidationRoute extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
-        onException(ConnectException.class)
+        onException(Exception.class)
                 .handled(true)
                 .maximumRedeliveries(2)
                 .maximumRedeliveryDelay(5000)
@@ -30,7 +30,7 @@ public class OrderValidationRoute extends RouteBuilder {
                     if (order == null) {
                         order = new Order();
                     }
-                    order.setAdditionalProperty("ConnectionException", "Could not connect to the remote server. Please try again later");
+                    order.setAdditionalProperty("Exception", "Something went wrong, please try again laterr");
                     e.getOut().setBody(order);
                     e.getMessage().setBody(order);
                 })
@@ -86,6 +86,7 @@ public class OrderValidationRoute extends RouteBuilder {
                 .setHeader(Exchange.HTTP_METHOD, simple("GET"))
                 .setHeader(Exchange.HTTP_QUERY, simple("id=${body}"))
                 .to("http://localhost:21003/api/customer")
+//                .to("https://kubernetes-practice-230221.appspot.com/customer")
                 .convertBodyTo(String.class)
                 .process(e -> {
                     final ObjectMapper mapper = new ObjectMapper();

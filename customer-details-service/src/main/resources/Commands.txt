@@ -1,0 +1,3 @@
+# To deploy to GCP
+mvn clean package appengine:deploy -P cloud-gcp
+

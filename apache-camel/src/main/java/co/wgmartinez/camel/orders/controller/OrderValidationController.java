@@ -15,43 +15,33 @@ import javax.validation.Valid;
 public class OrderValidationController {
 
     @Autowired
-    private OrderValidation orderValidation;
+    private OrderValidationService orderValidationService;
 
     @RequestMapping(value = "/order/sync/illustrateDsl", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<Order> illustrateDsl(@Valid @RequestBody Order request) throws Exception {
-
-        Order orderResponse = orderValidation.illustrateDsl(request);
+        Order orderResponse = orderValidationService.illustrateDsl(request);
         ResponseEntity<Order> responseEntity = new ResponseEntity<>(orderResponse, HttpStatus.OK);
-
         return responseEntity;
     }
 
     @RequestMapping(value = "/order/sync/splitImmediateAggregate", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<Order> splitImmediateAggregate(@Valid @RequestBody Order request) throws Exception {
-
-        Order orderResponse = orderValidation.splitAggregate(request);
+        Order orderResponse = orderValidationService.splitAggregate(request);
         ResponseEntity<Order> responseEntity = new ResponseEntity<>(orderResponse, HttpStatus.OK);
-
         return responseEntity;
     }
 
     @RequestMapping(value = "/order/sync/multicastImmediateAggregate", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<Order> multicastImmediateAggregate(@Valid @RequestBody Order request) throws Exception {
-
-        Order orderResponse = orderValidation.multicastImmediateAggregate(request);
+        Order orderResponse = orderValidationService.multicastImmediateAggregate(request);
         ResponseEntity<Order> responseEntity = new ResponseEntity<>(orderResponse, HttpStatus.OK);
-
         return responseEntity;
     }
-
 
     @RequestMapping(value = "/order/sync/multicastDelayedAggregate", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<Order> multicastDelayedAggregate(@Valid @RequestBody Order request) throws Exception {
-
-        Order orderResponse = orderValidation.multicastDelayedAggregate(request);
+        Order orderResponse = orderValidationService.multicastDelayedAggregate(request);
         ResponseEntity<Order> responseEntity = new ResponseEntity<>(orderResponse, HttpStatus.OK);
-
         return responseEntity;
     }
-
 }
