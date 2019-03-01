@@ -1,0 +1,13 @@
+Kakfa Notes
+
+# Setup Kafka on Docker
+https://www.kaaproject.org/kafka-docker/
+
+#Networking Properties
+KAFKA_ADVERTISED_LISTENERS -
+
+#List Topics  -
+bin/kafka-topics.sh --list --zookeeper localhost:2181
+
+# Send string messages to Kafka via command line/prompt
+bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test
