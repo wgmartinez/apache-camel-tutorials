@@ -1,4 +1,4 @@
-package co.wgmartinez.camel.orders.converter;
+package co.wgmartinez.camel.orders.converter1;
 
 import cxf.wsdl.wgmartinez.co.invoice_ws.AddInvoiceResponse;
 import org.apache.camel.Exchange;

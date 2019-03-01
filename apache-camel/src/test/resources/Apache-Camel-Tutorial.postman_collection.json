@@ -1,0 +1,225 @@
+{
+	"info": {
+		"_postman_id": "628e9e36-8ed8-4dc9-81ef-9d6ad7b58dfc",
+		"name": "Apache-Camel-Tutorial",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET - InventoryItem",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:23000/api/inventory/item/124",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "23000",
+					"path": [
+						"api",
+						"inventory",
+						"item",
+						"124"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - Customer Using ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:21003/api/customer/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "21003",
+					"path": [
+						"api",
+						"customer",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST - Route - ImmediateAggregation",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"customerId\": \"EVA123\",\n  \"orderDetails\": {\n    \"items\": [\n      {\n        \"code\": \"SALX123\"\n      },\n      {\n        \"code\": \"SALX244\"\n      },\n      {\n        \"code\": \"NIKE123\"\n      }\n      ]\n  }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:21001/camel-brownbag/order/sync/splitImmediateAggregate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "21001",
+					"path": [
+						"camel-brownbag",
+						"order",
+						"sync",
+						"splitImmediateAggregate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST - Route - Illustrate the use of DSL",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"customerId\": \"EVA123\",\n  \"orderDetails\": {\n    \"items\": [\n      {\n        \"code\": \"SALX123\"\n      },\n      {\n        \"code\": \"SALX244\"\n      },\n      {\n        \"code\": \"NIKE123\"\n      }\n      ]\n  }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:21001/camel-brownbag/order/sync/illustrateDsl",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "21001",
+					"path": [
+						"camel-brownbag",
+						"order",
+						"sync",
+						"illustrateDsl"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST - Multicast to CustomerDetails and ItemDetails and Aggregate Immediately",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"customerId\": \"EVA123\",\n  \"orderDetails\": {\n    \"items\": [\n      {\n        \"code\": \"SALX123\"\n      },\n      {\n        \"code\": \"SALX244\"\n      },\n      {\n        \"code\": \"NIKE123\"\n      }\n      ]\n  }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:21001/camel-brownbag/order/sync/multicastImmediateAggregate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "21001",
+					"path": [
+						"camel-brownbag",
+						"order",
+						"sync",
+						"multicastImmediateAggregate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST - Mulitcast to Customer Details and Item Details and Aggregate after a timeout",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"customerId\": \"EVA123\",\n  \"orderDetails\": {\n    \"items\": [\n      {\n        \"code\": \"SALX123\"\n      },\n      {\n        \"code\": \"SALX244\"\n      },\n      {\n        \"code\": \"NIKE123\"\n      }\n      ]\n  }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:21001/camel-brownbag/order/sync/multicastDelayedAggregate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "21001",
+					"path": [
+						"camel-brownbag",
+						"order",
+						"sync",
+						"multicastDelayedAggregate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST - Route - Illustrate Exception Handling",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"customerId\": \"WGM123\",\n  \"orderDetails\": {\n    \"items\": [\n      {\n        \"code\": \"SALX123\"\n      },\n      {\n        \"code\": \"SALX244\"\n      },\n      {\n        \"code\": \"NIKE123\"\n      }\n      ]\n  }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:21001/camel-brownbag/order/sync/illustrateExceptionHandling",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "21001",
+					"path": [
+						"camel-brownbag",
+						"order",
+						"sync",
+						"illustrateExceptionHandling"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

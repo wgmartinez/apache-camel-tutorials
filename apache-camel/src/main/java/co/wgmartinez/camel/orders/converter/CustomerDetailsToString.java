@@ -1,57 +1,58 @@
 package co.wgmartinez.camel.orders.converter1;
 
-import co.wgmartinez.camel.orders.model.Order;
+import co.wgmartinez.camel.orders.model.CustomerDetails;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.camel.*;
 
 import java.io.IOException;
 
-//@Converter
-//public class StringToOrder implements TypeConverter {
-public class StringToOrder { //implements TypeConverter {
-//    @Override
+@Converter
+public class CustomerDetailsToString implements TypeConverter {
+
+    @Override
     public boolean allowNull() {
-        return false;
+        return true;
     }
 
-//    @Override
+    @Override
     public <T> T convertTo(Class<T> type, Object value) throws TypeConversionException {
 
+
         ObjectMapper mapper = new ObjectMapper();
-        String val = (String) value;
-        Order result = new Order();
+        CustomerDetails val = (CustomerDetails) value;
+        String customerDetails = null;
 
         try {
-            result = mapper.readValue(val, Order.class);
+            customerDetails = mapper.writeValueAsString(val);
         }catch (IOException e){
             throw new TypeConversionException(value, type, e);
         }
 
-        return (T) result;
+        return (T) customerDetails;
     }
 
-//    @Override
+    @Override
     public <T> T convertTo(Class<T> type, Exchange exchange, Object value) throws TypeConversionException {
-        return convertTo(type, value);
+        return (T) convertTo(String.class, value);
     }
 
-//    @Override
+    @Override
     public <T> T mandatoryConvertTo(Class<T> type, Object value) throws TypeConversionException, NoTypeConversionAvailableException {
-        return convertTo(type, value);
+        return (T) convertTo(String.class, value);
     }
 
-//    @Override
+    @Override
     public <T> T mandatoryConvertTo(Class<T> type, Exchange exchange, Object value) throws TypeConversionException, NoTypeConversionAvailableException {
-        return convertTo(type, value);
+        return (T) convertTo(String.class, value);
     }
 
-//    @Override
+    @Override
     public <T> T tryConvertTo(Class<T> type, Object value) {
-        return convertTo(type, value);
+        return (T) convertTo(String.class, value);
     }
 
-//    @Override
+    @Override
     public <T> T tryConvertTo(Class<T> type, Exchange exchange, Object value) {
-        return convertTo(type, value);
+        return (T) convertTo(String.class, value);
     }
 }
