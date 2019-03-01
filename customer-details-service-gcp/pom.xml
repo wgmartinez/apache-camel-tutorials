@@ -17,6 +17,7 @@
 	<groupId>co.wgmartinez.microservices</groupId>
 	<artifactId>customer-details-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
 	<name>customer-details-service</name>
 	<description>Spring Boot Tutorial For Apache Camel</description>
 
@@ -42,10 +43,23 @@
 			<artifactId>spring-boot-starter-actuator</artifactId>
 			<version>${spring.boot.version}</version>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 			<version>${spring.boot.version}</version>
+			<!--<exclusions>-->
+				<!--<exclusion>-->
+					<!--<groupId>org.springframework.boot</groupId>-->
+					<!--<artifactId>spring-boot-starter-tomcat</artifactId>-->
+				<!--</exclusion>-->
+			<!--</exclusions>-->
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-gcp-starter</artifactId>
+			<version>1.0.0.RELEASE</version>
 		</dependency>
 
 		<dependency>
@@ -67,9 +81,60 @@
 			<version>1.0</version>
 		</dependency>
 
+		<!--<dependency>-->
+			<!--<groupId>javax.servlet</groupId>-->
+			<!--<artifactId>javax.servlet-api</artifactId>-->
+			<!--<version>3.1.0</version>-->
+			<!--<scope>provided</scope>-->
+		<!--</dependency>-->
 
 	</dependencies>
 
+	<!--<profiles>-->
+		<!--<profile>-->
+			<!--<id>cloud-gcp</id>-->
+			<!--<dependencyManagement>-->
+				<!--<dependencies>-->
+					<!--<dependency>-->
+						<!--<groupId>org.springframework.cloud</groupId>-->
+						<!--<artifactId>spring-cloud-dependencies</artifactId>-->
+						<!--<version>Finchley.SR1</version>-->
+						<!--<type>pom</type>-->
+						<!--<scope>import</scope>-->
+					<!--</dependency>-->
+				<!--</dependencies>-->
+			<!--</dependencyManagement>-->
+			<!--<dependencies>-->
+				<!--<dependency>-->
+					<!--<groupId>org.springframework.cloud</groupId>-->
+					<!--<artifactId>spring-cloud-gcp-starter</artifactId>-->
+					<!--<version>1.0.0.RELEASE</version>-->
+				<!--</dependency>-->
+			<!--</dependencies>-->
+			<!--<build>-->
+				<!--<finalName>${project.name}-gcp</finalName>-->
+				<!--&lt;!&ndash;<resources>&ndash;&gt;-->
+					<!--&lt;!&ndash;<resource>&ndash;&gt;-->
+						<!--&lt;!&ndash;<directory>src/main/resources</directory>&ndash;&gt;-->
+						<!--&lt;!&ndash;<excludes>&ndash;&gt;-->
+							<!--&lt;!&ndash;<exclude>**/logback.xml</exclude>&ndash;&gt;-->
+						<!--&lt;!&ndash;</excludes>&ndash;&gt;-->
+					<!--&lt;!&ndash;</resource>&ndash;&gt;-->
+				<!--&lt;!&ndash;</resources>&ndash;&gt;-->
+				<!--<plugins>-->
+					<!--<plugin>-->
+						<!--<groupId>com.google.cloud.tools</groupId>-->
+						<!--<artifactId>appengine-maven-plugin</artifactId>-->
+						<!--<version>1.3.2</version>-->
+					<!--</plugin>-->
+					<!--<plugin>-->
+						<!--<groupId>org.springframework.boot</groupId>-->
+						<!--<artifactId>spring-boot-maven-plugin</artifactId>-->
+					<!--</plugin>-->
+				<!--</plugins>-->
+			<!--</build>-->
+		<!--</profile>-->
+	<!--</profiles>-->
 
 	<build>
 		<plugins>
@@ -77,6 +142,13 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+
+			<!--<plugin>-->
+				<!--<groupId>com.google.cloud.tools</groupId>-->
+				<!--<artifactId>appengine-maven-plugin</artifactId>-->
+				<!--<version>1.3.2</version>-->
+			<!--</plugin>-->
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>

@@ -44,4 +44,12 @@ public class OrderValidationController {
         ResponseEntity<Order> responseEntity = new ResponseEntity<>(orderResponse, HttpStatus.OK);
         return responseEntity;
     }
+
+    @RequestMapping(value = "/order/sync/illustrateExceptionHandling", method = RequestMethod.POST, produces = "application/json")
+    public ResponseEntity<Order> illustrateExceptionHandling(@Valid @RequestBody Order request) throws Exception {
+        Order orderResponse = orderValidationService.illustrateExceptionHandling(request);
+        ResponseEntity<Order> responseEntity = new ResponseEntity<>(orderResponse, HttpStatus.OK);
+        return responseEntity;
+    }
+
 }

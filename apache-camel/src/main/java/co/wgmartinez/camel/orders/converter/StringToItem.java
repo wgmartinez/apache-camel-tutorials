@@ -1,4 +1,4 @@
-package co.wgmartinez.camel.orders.converter1;
+package co.wgmartinez.camel.orders.converter;
 
 import co.wgmartinez.camel.orders.model.Item;
 import com.fasterxml.jackson.databind.ObjectMapper;

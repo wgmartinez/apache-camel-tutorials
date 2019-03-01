@@ -57,7 +57,7 @@ public class CustomerDetailsFactory {
         map.put("EVA123", herDetails);
     }
 
-    public CustomerDetails getCustomerDetailsForId(String id){
+    public CustomerDetails getCustomerDetaulsForId(String id){
         return map.get(id);
     }
 }

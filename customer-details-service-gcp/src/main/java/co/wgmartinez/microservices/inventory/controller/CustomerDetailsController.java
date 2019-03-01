@@ -19,13 +19,8 @@ public class CustomerDetailsController {
     public ResponseEntity<CustomerDetails> receiveOrderRequest(@RequestParam("id") String id) throws Exception {
 
         System.out.println("Received request param = " + id);
-        CustomerDetails customerDetails = factory.getCustomerDetailsForId(id);
+        CustomerDetails customerDetails = factory.getCustomerDetaulsForId(id);
         System.out.println("CustomerDetails = " + customerDetails);
-
-        if (customerDetails == null){
-            customerDetails = new CustomerDetails();
-            customerDetails.setAdditionalProperty("NotFound", "Customer Details not found");
-        }
 
         ResponseEntity<CustomerDetails> responseEntity = new ResponseEntity<>(customerDetails, HttpStatus.OK);
         return responseEntity;
