@@ -1,0 +1,6 @@
+gsutil iam ch user:wgmartinez@gmail.com:storage.buckets.create
+
+gsutil mb -p project—number -c Regional -l australia-southeast1 gs://apache-camel-bucket
+
+
+

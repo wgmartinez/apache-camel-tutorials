@@ -31,19 +31,19 @@ public class OrderValidationRoute extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
-//        onException(Exception.class)
-//                .handled(true)
-//                .maximumRedeliveries(-1)
-//                .maximumRedeliveryDelay(10000)
-//                .process(e -> {
-//                    if (order == null) {
-//                        order = new Order();
-//                    }
-//                    order.setAdditionalProperty("Exception", "Something went wrong, please try again laterr");
-//                    e.getOut().setBody(order);
-//                    e.getMessage().setBody(order);
-//                })
-//                .end();
+        onException(Exception.class)
+                .handled(true)
+                .maximumRedeliveries(10)
+                .maximumRedeliveryDelay(10000)
+                .process(e -> {
+                    if (order == null) {
+                        order = new Order();
+                    }
+                    order.setAdditionalProperty("Exception", "Something went wrong, please try again laterr");
+                    e.getOut().setBody(order);
+                    e.getMessage().setBody(order);
+                })
+                .end();
 
 
         from("direct:illustrateDsl")
@@ -51,7 +51,6 @@ public class OrderValidationRoute extends RouteBuilder {
                     order = e.getIn().getBody(Order.class);
                     e.getOut().setBody(order);
                 })
-//                .wireTap("direct:googlePubsubStart")
                 .to("direct:customerDetails")
                 .end();
 
@@ -61,6 +60,7 @@ public class OrderValidationRoute extends RouteBuilder {
                     order = e.getIn().getBody(Order.class);
                     e.getOut().setBody(order);
                 })
+                .wireTap("direct:googlePubsubStart")
                 .to("direct:itemDetailsImmediateAggregate")
                 .end();
 
@@ -74,7 +74,6 @@ public class OrderValidationRoute extends RouteBuilder {
                 .parallelProcessing()
                 .to("direct:customerDetails", "direct:itemDetailsImmediateAggregate")
                 .end();
-
 
 
         from("direct:multicastDelayedAggregate")
@@ -96,15 +95,11 @@ public class OrderValidationRoute extends RouteBuilder {
                 .to("direct:customerDetailsWithExceptionProcessing")
                 .end();
 
+
         from("direct:illustrateDefaultExceptionHandling")
                 .process(e -> {
-                    try {
-                        order = e.getIn().getBody(Order.class);
-                    }catch (Exception exc){
-                        order.setAdditionalProperty("MyException1", exc.getMessage());
-                    }finally{
-                        e.getOut().setBody(order);
-                    }
+                    order = e.getIn().getBody(Order.class);
+                    e.getOut().setBody(order);
                 })
                 .to("direct:customerDetailsWithExceptionProcessing")
                 .end();
@@ -131,20 +126,14 @@ public class OrderValidationRoute extends RouteBuilder {
                     order.setCustomerDetails(customerDetails);
                     e.getOut().setBody(order, Order.class);
                 })
+                .wireTap("direct:googlePubsubStart")
                 .end();
-
 
 
         from("direct:customerDetailsWithExceptionProcessing")
                 .process(e -> {
-                    try {
-                        order = e.getIn().getBody(Order.class);
-                    } catch (Exception exc){
-                        order.setAdditionalProperty("ExceptioncustomerDetailsWithExceptionProcessing", "customerDetailsWithExceptionProcessing error");
-                        e.getOut().setFault(true);
-                    }finally {
-                        e.getOut().setBody(order.getCustomerId());
-                    }
+                    order = e.getIn().getBody(Order.class);
+                    e.getOut().setBody(order.getCustomerId());
                 })
                 .process(new Processor() {
                     @Override
@@ -172,12 +161,11 @@ public class OrderValidationRoute extends RouteBuilder {
 
                             exchange.getOut().setBody(result.toString());
 
-                        }catch (Exception e){
+                        } catch (Exception e) {
                             final ObjectMapper mapper = new ObjectMapper();
                             CustomerDetails details = new CustomerDetails();
                             details.setAdditionalProperty("ConnectionException", "The Customer Details API is currently not available");
                             exchange.getOut().setBody(mapper.writeValueAsString(details));
-                            exchange.getOut().setFault(true);
                         }
 
                     }
@@ -198,11 +186,13 @@ public class OrderValidationRoute extends RouteBuilder {
 
 
         from("direct:itemDetailsImmediateAggregate")
+                .wireTap("direct:googlePubsubStart")
                 .split(simple("${body.orderDetails.items}"), new InventoryAggregator())
                 .bean(WarehouseService.class, "checkInventory")
                 .enrich("direct:enrichWithSpecification", new SpecificationAggregator())
                 .end()
                 .to("direct:aggregateCustomerDetailsAndItemDetails")
+                .wireTap("direct:googlePubsubStart")
                 .end();
 
 
@@ -238,8 +228,8 @@ public class OrderValidationRoute extends RouteBuilder {
                 })
                 .end();
 
-//        from("direct:googlePubsubStart")
-//                .to("google-pubsub:kubernetes-practice-230221:myTopic");
+        from("direct:googlePubsubStart")
+                .to("google-pubsub:camel-tutorial:my-topic");
 
     }
 
