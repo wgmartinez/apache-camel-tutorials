@@ -31,22 +31,23 @@ public class OrderValidationRoute extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
-        onException(Exception.class)
-                .handled(true)
-                .maximumRedeliveries(10)
-                .maximumRedeliveryDelay(10000)
-                .process(e -> {
-                    if (order == null) {
-                        order = new Order();
-                    }
-                    order.setAdditionalProperty("Exception", "Something went wrong, please try again laterr");
-                    e.getOut().setBody(order);
-                    e.getMessage().setBody(order);
-                })
-                .end();
+//        onException(Exception.class)
+//                .handled(true)
+//                .maximumRedeliveries(10)
+//                .maximumRedeliveryDelay(10000)
+//                .process(e -> {
+//                    if (order == null) {
+//                        order = new Order();
+//                    }
+//                    order.setAdditionalProperty("Exception", "Something went wrong, please try again laterr");
+//                    e.getOut().setBody(order);
+//                    e.getMessage().setBody(order);
+//                })
+//                .end();
 
 
         from("direct:illustrateDsl")
+                .routeId("illustrateDsl")
                 .process(e -> {
                     order = e.getIn().getBody(Order.class);
                     e.getOut().setBody(order);
