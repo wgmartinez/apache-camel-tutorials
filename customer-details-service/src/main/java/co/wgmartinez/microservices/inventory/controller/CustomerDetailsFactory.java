@@ -27,9 +27,9 @@ public class CustomerDetailsFactory {
         myDetails.setPaymentDetails(paymentDetails);
 
         DeliveryDetails deliveryDetails = new DeliveryDetails();
-        deliveryDetails.setAddress("4 Brave Court");
-        deliveryDetails.setCity("Carnes Hill");
-        deliveryDetails.setPostcode("2171");
+        deliveryDetails.setAddress("10 Brave Court");
+        deliveryDetails.setCity("Sydney");
+        deliveryDetails.setPostcode("2000");
         deliveryDetails.setState("NSW");
 
         myDetails.setDeliveryDetails(deliveryDetails);
@@ -46,9 +46,9 @@ public class CustomerDetailsFactory {
         herDetails.setPaymentDetails(paymentDetails);
 
         deliveryDetails = new DeliveryDetails();
-        deliveryDetails.setAddress("4 Brave Court");
-        deliveryDetails.setCity("Carnes Hill");
-        deliveryDetails.setPostcode("2171");
+        deliveryDetails.setAddress("10 Brave Court");
+        deliveryDetails.setCity("Sydney");
+        deliveryDetails.setPostcode("2000");
         deliveryDetails.setState("NSW");
 
         herDetails.setDeliveryDetails(deliveryDetails);
