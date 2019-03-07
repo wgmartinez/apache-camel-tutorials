@@ -49,6 +49,7 @@
 	</build>
 
 	<modules>
+		<module>model</module>
 		<module>apache-camel</module>
 		<module>customer-details-service</module>
 		<module>inventory-service</module>
